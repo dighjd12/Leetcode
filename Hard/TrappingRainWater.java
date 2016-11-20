@@ -12,8 +12,8 @@ public int trap(int[] height) {
     if(height==null || height.length<=2)
         return result;
  
-    int left[] = new int[height.length];
-    int right[]= new int[height.length];
+    int left[] = new int[height.length]; //contains highest left bar that can be used to trap the water
+    int right[]= new int[height.length]; //contains highest right bar
  
     //scan from left to right
     int max = height[0];
@@ -41,7 +41,10 @@ public int trap(int[] height) {
  
     //calculate totoal
     for(int i=0; i<height.length; i++){
-        result+= Math.min(left[i],right[i])-height[i];
+        //water trapped at this index 
+        //is the possible water trapped by current highest right and left bar (min of those)
+        //minus its height
+        result+= Math.min(left[i],right[i])-height[i]; 
     }
  
     return result;
